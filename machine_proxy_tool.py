@@ -118,7 +118,7 @@ with very_left:
     # st.markdown("<br>", unsafe_allow_html=True)
 
     # Display the image
-    st.image(img, caption="", use_column_width=True)
+    st.image(img, caption="", use_container_width=True)
 
 
 with left:
