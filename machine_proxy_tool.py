@@ -6,7 +6,7 @@ from PIL import Image
 st.set_page_config(layout="wide")
 
 # Load an image from file
-img = Image.open("C:\\Users\\natha\\Documents\\machine_examples.png")
+img = Image.open("machine_examples.png")
 
 
 # background colour
