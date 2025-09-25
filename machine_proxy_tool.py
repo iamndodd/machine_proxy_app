@@ -39,6 +39,9 @@ def custom_box(text, bg_color="#e6f4ea", text_color="#1b4332"):
     )
 
 
+#titles colour
+titles_colour = "#232648"
+
 # --- Data ---
 data = {
     "Environmental Impact Metric": [
@@ -107,24 +110,48 @@ category_descriptions = {
 
 
 # --- Streamlit App ---
-st.title("Embedded Environmental Impact Estimator For Machines and Tools")
 
-# --- Layout with four columns ---
-very_left, left, middle, right = st.columns([0.5, 1, 0.05, 2.5])  # middle column small for separator
+# app title
+st.markdown(
+    f"""
+    <h1 style='text-align: center; font-size:32px; font-weight: bold; color:{titles_colour};'>
+        Sustainability Approximator: Manufuacturing of Machines
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
 
+<<<<<<< HEAD
+# Display the image
+st.image(img, width="stretch")
+
+st.markdown(
+    f"""
+    <h1 style='text-align: center; font-size:40px; font-weight: bold; color:{titles_colour};'>
+        S.A:M.o.M
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# --- Layout with three columns ---
+left, middle, right = st.columns([1, 0.05, 2.5])  # middle column small for separator
+=======
 with very_left:
     # Display the image
     st.image(img, use_container_width=True)
+>>>>>>> origin/main
 
 
 with left:
     # Input: float number
-    st.markdown("<h2 style='font-size:20px;'>Enter a Mass (kg):</h2>", unsafe_allow_html=True)
+    st.markdown(f"<h2 style='font-size:20px; color:{titles_colour};'>Enter a Mass (kg):</h2>", unsafe_allow_html=True)
     value = st.number_input("Mass (kg):", min_value=0.0, step=0.1, label_visibility="collapsed")
 
     # Dropdown: category selection
-    st.markdown("<h2 style='font-size:20px;'>Select Overall Machine Complexity:</h2>", unsafe_allow_html=True)
-    category = st.selectbox("Pick a category:", list(category_descriptions.keys()))
+    st.markdown(f"<h2 style='font-size:20px; color:{titles_colour};'>Select Overall Machine Complexity:</h2>", unsafe_allow_html=True)
+    category = st.selectbox("machine complexity drop down list", list(category_descriptions.keys()), label_visibility="collapsed")
 
     # Determine column name from dropdown
     col_name = f"Cat {category}"
@@ -136,10 +163,41 @@ with left:
 with right:
     if value > 0:
         df["Result"] = df[f"Cat {category}"] * value
+<<<<<<< HEAD
+        df["Result"] = df["Result"].round(decimals=10).astype(str) + "  " + df["Units"]
+=======
         df["Result"] = df["Result"].round(decimals=10).astype(str) + " - " + df["Units"]
+>>>>>>> origin/main
         
         number_of_rows = df["Result"].count()
         content_fit_row_count = int(number_of_rows * 37.5)
 
+<<<<<<< HEAD
+        # The word "results" in somewhat redundant # Colour not altering!
+        # st.markdown(f"<h2 style='font-size:20px, color:{titles_colour};'>Results:</h2>", unsafe_allow_html=True)
+
+        st.dataframe(df[["Environmental Impact Metric", "Result"]], height=content_fit_row_count, width='stretch', hide_index=True)
+
+# app reference detail
+st.markdown("""
+          <div style="text-align: center; font-size:12px; color:black;">
+          <em>Original research data from ecoinvent Association (2024). 
+          ecoinvent database v3.10. Zurich, Switzerland. 
+          Available at: <a href="https://ecoinvent.org" target="_blank" style="color:blue;">ecoinvent.org</a>
+        </em>
+    </div>""", 
+unsafe_allow_html=True)
+
+
+st.markdown(
+    f"""
+    <h1 style='text-align: center; font-size:10px; color:{titles_colour};'>
+        Created by Dr. Nathan Dodd 2025
+    </h1>
+    """,
+    unsafe_allow_html=True
+)
+=======
         st.markdown("<h2 style='font-size:20px;'>Results:</h2>", unsafe_allow_html=True)
         st.dataframe(df[["Environmental Impact Metric", "Result"]], height=content_fit_row_count, use_container_width=True, hide_index=True)
+>>>>>>> origin/main
