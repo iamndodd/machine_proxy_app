@@ -121,7 +121,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-<<<<<<< HEAD
 # Display the image
 st.image(img, width="stretch")
 
@@ -137,12 +136,6 @@ st.markdown(
 
 # --- Layout with three columns ---
 left, middle, right = st.columns([1, 0.05, 2.5])  # middle column small for separator
-=======
-with very_left:
-    # Display the image
-    st.image(img, use_container_width=True)
->>>>>>> origin/main
-
 
 with left:
     # Input: float number
@@ -163,16 +156,11 @@ with left:
 with right:
     if value > 0:
         df["Result"] = df[f"Cat {category}"] * value
-<<<<<<< HEAD
         df["Result"] = df["Result"].round(decimals=10).astype(str) + "  " + df["Units"]
-=======
-        df["Result"] = df["Result"].round(decimals=10).astype(str) + " - " + df["Units"]
->>>>>>> origin/main
         
         number_of_rows = df["Result"].count()
         content_fit_row_count = int(number_of_rows * 37.5)
 
-<<<<<<< HEAD
         # The word "results" in somewhat redundant # Colour not altering!
         # st.markdown(f"<h2 style='font-size:20px, color:{titles_colour};'>Results:</h2>", unsafe_allow_html=True)
 
@@ -197,7 +185,3 @@ st.markdown(
     """,
     unsafe_allow_html=True
 )
-=======
-        st.markdown("<h2 style='font-size:20px;'>Results:</h2>", unsafe_allow_html=True)
-        st.dataframe(df[["Environmental Impact Metric", "Result"]], height=content_fit_row_count, use_container_width=True, hide_index=True)
->>>>>>> origin/main
