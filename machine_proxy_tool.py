@@ -14,7 +14,7 @@ st.markdown(
     """
     <style>
     .stApp {
-        background-color: #2b0339;  /* light gray background */
+        background-color: #d3d3d3;  /* light gray background */
     }
     </style>
     """,
@@ -113,12 +113,8 @@ st.title("Embedded Environmental Impact Estimator For Machines and Tools")
 very_left, left, middle, right = st.columns([0.5, 1, 0.05, 2.5])  # middle column small for separator
 
 with very_left:
-
-    # add vertical space
-    # st.markdown("<br>", unsafe_allow_html=True)
-
     # Display the image
-    st.image(img, caption="", use_container_width=True)
+    st.image(img, use_container_width=True)
 
 
 with left:
@@ -137,19 +133,13 @@ with left:
     info = category_descriptions[category]
     custom_box(info["desc"], info["color"])
 
-#line seperator
-with middle:
-    st.markdown(
-        """
-        <div style="border-left:3px solid white; height:400px;"></div>
-        """,
-        unsafe_allow_html=True
-    )
-
-
 with right:
     if value > 0:
-        result_df = df.copy()
-        result_df["Result"] = result_df[f"Cat {category}"] * value
+        df["Result"] = df[f"Cat {category}"] * value
+        df["Result"] = df["Result"].round(decimals=10).astype(str) + " - " + df["Units"]
+        
+        number_of_rows = df["Result"].count()
+        content_fit_row_count = int(number_of_rows * 37.5)
+
         st.markdown("<h2 style='font-size:20px;'>Results:</h2>", unsafe_allow_html=True)
-        st.dataframe(result_df[["Environmental Impact Metric", "Units", "Result"]], height=600, use_container_width=True)
+        st.dataframe(df[["Environmental Impact Metric", "Result"]], height=content_fit_row_count, use_container_width=True, hide_index=True)
